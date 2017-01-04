@@ -5,15 +5,14 @@ clc
 
 %% read image
 fprintf('Shinkai Makoto Filter START!\nRead image.\n');
-src1 = imread('input/input5.jpg');
-src2 = im2double(src1);
-[M, N, C] = size(src1);
-target = imread('guide/guide10.jpg');
-target = im2double(target);
+src = im2double(imread('input/input5.jpg'));
+target = im2double(imread('guide/guide10.jpg'));
+sky = im2double(imread('sky.jpg'));
+[M, N, C] = size(src);
 
 %% Step1: median filtering
 fprintf('\nStep1: median filtering\n');
-blur = changeStyle(src2, M*N);
+blur = changeStyle(src, M*N);
 
 %% Step2: color transfer (guide)
 fprintf('\nStep2: color transfer\n');
@@ -23,13 +22,17 @@ color = cf_reinhard(blur, target);
 fprintf('\nStep3: adjust\n');
 adjust = adjustHSV(color);
 
-%% Step4: add light (light source)
-fprintf('\nStep4: add light\n');
-[light, light_filter] = addLight(adjust, M, N);
+%% Step4: paste sky (sky)
+fprintf('\nStep4: paste sky\n');
+changeSky = pasteSky(adjust, sky, findSky(src));
+
+%% Step5: add light (light source)
+fprintf('\nStep5: add light\n');
+[light, light_filter] = addLight(src, changeSky, M, N);
 
 %% show
 figure
-imshow(src2);
+imshow(src);
 title('src');
 figure
 imshow(blur);
@@ -44,15 +47,19 @@ figure
 imshow(adjust);
 title('Step3: adjust');
 figure
+imshow(changeSky);
+title('Step4: paste sky');
+figure
 imshow(light_filter)
 title('light filter');
 figure
 imshow(light)
-title('Step4: add light');
+title('Step5: add light');
 
 %% save
 imwrite(blur, 'Step1_median_filtering.jpg');
 imwrite(color, 'Step2_color_transfer.jpg');
 imwrite(adjust, 'Step3_adjust.jpg');
+imwrite(changeSky, 'Step4_paste_sky.jpg');
 imwrite(light_filter, 'light_filter.jpg');
-imwrite(light, 'Step4_add_light.jpg');
+imwrite(light, 'Step5_add_light.jpg');

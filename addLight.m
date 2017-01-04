@@ -1,9 +1,9 @@
-function [ out, filter ] = addLight( in, M, N )
+function [ out, filter ] = addLight( src, in, M, N )
 
     % Summary - add extra light
     
     % choose light source
-    imshow(in);
+    imshow(src);
     [y, x] = ginput(1);
     x = floor(x);
     y = floor(y);
