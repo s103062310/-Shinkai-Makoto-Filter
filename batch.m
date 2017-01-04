@@ -1,5 +1,7 @@
 %% preparation
 close all
+clear all
+clc
 
 %% choose sky & guide
 sky = im2double(imread('sky.jpg'));
