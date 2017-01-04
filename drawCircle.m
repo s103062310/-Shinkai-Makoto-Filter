@@ -1,8 +1,9 @@
-function [ out ] = circle( in, x, y, r )
+function [ out ] = drawCircle( in, x, y, r )
 
     % Summary - draw circle in input image
 
     % preparation
+    fprintf('\nDraw light source.\n');
     [M, N] = size(in);
     count = 0;
     min = 5000;
