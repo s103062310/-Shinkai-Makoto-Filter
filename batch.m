@@ -1,48 +1,29 @@
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
 %% preparation
 close all
 
 %% choose sky & guide
 sky = im2double(imread('sky.jpg'));
 guide = im2double(imread('guide/guide10.jpg'));
-%% input1
-in = im2double(imread('input/input1.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input2
-in = im2double(imread('input/input2.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input3
-in = im2double(imread('input/input3.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input4
-in = im2double(imread('input/input4.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input5
-in = im2double(imread('input/input5.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input6
-in = im2double(imread('input/input6.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input7
-in = im2double(imread('input/input7.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input8
-in = im2double(imread('input/input8.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input9
-in = im2double(imread('input/input9.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
-%% input10
-in = im2double(imread('input/input10.jpg'));
-out1 = unnamed(in,guide);
-out2 = pasteSky(out1,sky,findSky(in));
+%% input
+input1 = im2double(imread('input/input1.jpg'));
+input2 = im2double(imread('input/input2.jpg'));
+input3 = im2double(imread('input/input3.jpg'));
+input4 = im2double(imread('input/input4.jpg'));
+input5 = im2double(imread('input/input5.jpg'));
+input6 = im2double(imread('input/input6.jpg'));
+input7 = im2double(imread('input/input7.jpg'));
+input8 = im2double(imread('input/input8.jpg'));
+input9 = im2double(imread('input/input9.jpg'));
+input10 = im2double(imread('input/input10.jpg'));
+
+%% filtering
+output1 = ShinkaiMakotoFilter(input1, guide, sky);
+output2 = ShinkaiMakotoFilter(input2, guide, sky);
+output3 = ShinkaiMakotoFilter(input3, guide, sky);
+output4 = ShinkaiMakotoFilter(input4, guide, sky);
+output5 = ShinkaiMakotoFilter(input5, guide, sky);
+output6 = ShinkaiMakotoFilter(input6, guide, sky);
+output7 = ShinkaiMakotoFilter(input7, guide, sky);
+output8 = ShinkaiMakotoFilter(input8, guide, sky);
+output9 = ShinkaiMakotoFilter(input9, guide, sky);
+output10 = ShinkaiMakotoFilter(input10, guide, sky);

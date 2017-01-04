@@ -24,7 +24,8 @@ adjust = adjustHSV(color);
 
 %% Step4: paste sky (sky)
 fprintf('\nStep4: paste sky\n');
-changeSky = pasteSky(adjust, sky, findSky(src));
+[skyMask, mask_threshold, mask_dilate, mask_erode] = findSky(src);
+changeSky = pasteSky(adjust, sky, skyMask);
 
 %% Step5: add light (light source)
 fprintf('\nStep5: add light\n');
@@ -46,6 +47,18 @@ title('Step2: color transform');
 figure
 imshow(adjust);
 title('Step3: adjust');
+figure;
+imshow(mask_threshold);
+title('Step4-1: threshold');
+figure;
+imshow(mask_dilate);
+title('Step4-2: dilation');
+figure;
+imshow(mask_erode);
+title('Step4-3: erosion');
+figure;
+imshow(skyMask);
+title('Step4-3: sky mask');
 figure
 imshow(changeSky);
 title('Step4: paste sky');
@@ -60,6 +73,9 @@ title('Step5: add light');
 imwrite(blur, 'Step1_median_filtering.jpg');
 imwrite(color, 'Step2_color_transfer.jpg');
 imwrite(adjust, 'Step3_adjust.jpg');
+imwrite(mask_threshold, 'Step4-1_threshold.jpg');
+imwrite(mask_dilate, 'Step4-2_dilation.jpg');
+imwrite(mask_erode, 'Step4-3_erosion.jpg');
 imwrite(changeSky, 'Step4_paste_sky.jpg');
-imwrite(light_filter, 'light_filter.jpg');
+imwrite(light_filter, 'Step5-1_light_filter.jpg');
 imwrite(light, 'Step5_add_light.jpg');
