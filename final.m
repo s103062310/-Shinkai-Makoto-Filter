@@ -5,7 +5,7 @@ clc
 
 %% read image
 fprintf('Shinkai Makoto Filter START!\nRead image.\n');
-src = im2double(imread('input/input5.jpg'));
+src = im2double(imread('input/input4.jpg'));
 target = im2double(imread('guide/guide10.jpg'));
 sky = im2double(imread('sky.jpg'));
 [M, N, C] = size(src);
@@ -30,6 +30,9 @@ changeSky = pasteSky(adjust, sky, skyMask);
 %% Step5: add light (light source)
 fprintf('\nStep5: add light\n');
 [light, light_filter] = addLight(src, changeSky, M, N);
+
+%% Step6: sharpening
+dst = imsharpen(light);
 
 %% show
 figure
@@ -79,3 +82,5 @@ imwrite(mask_erode, 'Step4-3_erosion.jpg');
 imwrite(changeSky, 'Step4_paste_sky.jpg');
 imwrite(light_filter, 'Step5-1_light_filter.jpg');
 imwrite(light, 'Step5_add_light.jpg');
+
+

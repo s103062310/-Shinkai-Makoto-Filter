@@ -1,6 +1,6 @@
-function [ out ] = drawLine( in, x, y, n )
+function [ out ] = drawRadixLine( in, x, y, n )
 
-    % Summary - draw line on input image
+    % Summary - draw radix line on input image
     
     % preparation
     fprintf('\nDraw light line.\n');
